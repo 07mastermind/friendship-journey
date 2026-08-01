@@ -1,0 +1,157 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-display: 'Fraunces', ui-serif, serif;
+  --font-body: 'Manrope', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+
+  --color-void: #0a0b14;
+  --color-deep: #10122a;
+  --color-dusk: #171a3a;
+  --color-ink: #f4f1ec;
+  --color-ink-muted: #a6a4c0;
+  --color-ink-faint: #6d6b8a;
+
+  --color-violet: #7a6ae0;
+  --color-violet-soft: #a99cf2;
+  --color-rose: #ea7ea0;
+  --color-gold: #ecbd6b;
+  --color-teal: #52d6c9;
+}
+
+:root {
+  color-scheme: dark;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(166, 164, 192, 0.35) transparent;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+body {
+  margin: 0;
+  background: var(--color-void);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+.font-mono {
+  font-family: var(--font-mono);
+}
+
+/* Glassmorphism panel */
+.glass {
+  background: linear-gradient(160deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.015));
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  backdrop-filter: blur(18px) saturate(140%);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+}
+
+.glass-strong {
+  background: linear-gradient(160deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.03));
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  backdrop-filter: blur(24px) saturate(160%);
+  -webkit-backdrop-filter: blur(24px) saturate(160%);
+}
+
+.text-gradient {
+  background: linear-gradient(100deg, var(--color-violet-soft), var(--color-rose) 45%, var(--color-gold) 85%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Focus visibility for accessibility */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid var(--color-teal);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+::selection {
+  background: rgba(122, 106, 224, 0.4);
+  color: #fff;
+}
+
+@keyframes drift {
+  0% { transform: translate3d(0, 0, 0); }
+  50% { transform: translate3d(6px, -10px, 0); }
+  100% { transform: translate3d(0, 0, 0); }
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.25; transform: scale(0.9); }
+  50% { opacity: 1; transform: scale(1.1); }
+}
+
+@keyframes flourish {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); opacity: 0.35; }
+  40% { transform: translate3d(0, -10px, 0) scale(1.05); opacity: 1; }
+  60% { transform: translate3d(0, -6px, 0) scale(1.02); opacity: 0.85; }
+}
+
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  25% { transform: scale(1.06); }
+  50% { transform: scale(0.96); }
+  75% { transform: scale(1.02); }
+}
+
+.animate-drift {
+  animation: drift 6s ease-in-out infinite;
+}
+
+.animate-twinkle {
+  animation: twinkle 3.2s ease-in-out infinite;
+}
+
+.animate-flourish {
+  animation: flourish 5s ease-in-out infinite;
+}
+
+.animate-heartbeat {
+  animation: heartbeat 1.8s ease-in-out infinite;
+}
+
+/* Optional light theme: same structure, brighter tones, still premium */
+.theme-light {
+  --color-void: #f6f2ec;
+  --color-deep: #ffffff;
+  --color-dusk: #efe7f7;
+  --color-ink: #211f34;
+  --color-ink-muted: #5b5775;
+  --color-ink-faint: #948fae;
+  color-scheme: light;
+}
+
+.theme-light .glass,
+.theme-light .glass-strong {
+  background: linear-gradient(160deg, rgba(30, 20, 60, 0.05), rgba(30, 20, 60, 0.02));
+  border: 1px solid rgba(30, 20, 60, 0.1);
+}
